@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MingweiSamuel.Camille.Champion;
+using MingweiSamuel.Camille.Model.Champion;
 using MingweiSamuel.Camille.Enums;
 
 namespace Camille.Test

@@ -31,9 +31,9 @@ function normalizeArgName(name) {
 
 function normalizePropName(propName, schemaName, value) {
   var tokens = propName.split('_');
-  var name = tokens.map(capitalize).join('');
-  if (name === schemaName)
-    name += stringifyType(value);
+    var name = tokens.map(capitalize).join('');
+    if (name === schemaName)
+        name += stringifyType(value);
   return name;
 }
 
@@ -44,7 +44,7 @@ function stringifyType(prop, endpoint = null, nullable = false) {
 
   let refType = prop['$ref'];
   if (refType) {
-    return (!endpoint ? '' : endpoint + '.') +
+    return (!endpoint ? '' : `Model.${endpoint}.`) +
       normalizeSchemaName(refType.slice(refType.indexOf('.') + 1));
   }
   var qm = nullable ? '?' : '';

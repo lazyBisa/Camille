@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MingweiSamuel.Camille.Enums;
-using MingweiSamuel.Camille.Match;
-using Match = MingweiSamuel.Camille.Match.Match;
+using MingweiSamuel.Camille.Model.Match;
 
 namespace Camille.Test
 {

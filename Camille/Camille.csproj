@@ -29,6 +29,10 @@
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="src-gen\" />
+  </ItemGroup>
+
 <!--
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -43,11 +47,13 @@
 
   <Target Name="BuildTemplates" BeforeTargets="DispatchToInnerBuilds">
     <Message Text="Building templates." />
-    <Exec Command="powershell -Command &quot;cd gen; node index.js&quot;" />
+    <Exec Command="powershell -Command &quot;cd gen; npm update; node index.js&quot;" />
   </Target>
   
   <Target Name="DownloadSpec" BeforeTargets="BuildTemplates">
     <Message Text="Downloading openapi spec." />
     <Exec Command="powershell -Command &quot;Invoke-WebRequest -Uri \&quot;http://www.mingweisamuel.com/riotapi-schema/openapi-3.0.0.json\&quot; -OutFile .\gen\.spec.json; exit 0;&quot;" />
   </Target>
+  
+  <ProjectExtensions><VisualStudio><UserProperties gen_4_1spec_1json__JSONSchema="https://raw.githubusercontent.com/googleapis/gnostic/master/OpenAPIv3/openapi-3.0.json" /></VisualStudio></ProjectExtensions>
 </Project>

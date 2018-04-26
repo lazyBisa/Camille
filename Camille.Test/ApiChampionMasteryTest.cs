@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MingweiSamuel.Camille.ChampionMastery;
+using MingweiSamuel.Camille.Model.ChampionMastery;
 using MingweiSamuel.Camille.Enums;
 
 namespace Camille.Test

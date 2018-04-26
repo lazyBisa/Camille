@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace MingweiSamuel.Camille
 {
-    public abstract class Endpoints
+    public abstract class EndpointBase
     {
         protected readonly RiotApi RiotApi;
 
-        protected Endpoints(RiotApi riotApi)
+        protected EndpointBase(RiotApi riotApi)
         {
             RiotApi = riotApi;
         }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MingweiSamuel.Camille.Enums;
-using MingweiSamuel.Camille.League;
-using MingweiSamuel.Camille.Match;
+using MingweiSamuel.Camille.Model.Match;
 
 namespace Camille.Test
 {
