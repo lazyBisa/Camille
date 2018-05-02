@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MingweiSamuel.Camille.Enums;
+using MingweiSamuel.Camille.Model.Enums;
 using MingweiSamuel.Camille.Model.League;
 
 namespace Camille.Test
@@ -47,16 +48,16 @@ namespace Camille.Test
         [Ignore("Season Reset")]
         public void GetTop()
         {
-            CheckGetTop(Api.League.GetChallengerLeague(Region.NA, Queue.RANKED_SOLO_5x5),
-                Api.League.GetMasterLeague(Region.NA, Queue.RANKED_SOLO_5x5));
+            CheckGetTop(Api.League.GetChallengerLeague(Region.NA, CompetitiveQueue.RANKED_SOLO_5x5),
+                Api.League.GetMasterLeague(Region.NA, CompetitiveQueue.RANKED_SOLO_5x5));
         }
 
         [TestMethod]
         [Ignore("Season Reset")]
         public async Task GetTopAsync()
         {
-            var challengerTask = Api.League.GetChallengerLeagueAsync(Region.NA, Queue.RANKED_SOLO_5x5);
-            var masterTask = Api.League.GetMasterLeagueAsync(Region.NA, Queue.RANKED_SOLO_5x5);
+            var challengerTask = Api.League.GetChallengerLeagueAsync(Region.NA, CompetitiveQueue.RANKED_SOLO_5x5);
+            var masterTask = Api.League.GetMasterLeagueAsync(Region.NA, CompetitiveQueue.RANKED_SOLO_5x5);
             CheckGetTop(await challengerTask, await masterTask);
         }
 

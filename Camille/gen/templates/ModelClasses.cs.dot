@@ -13,8 +13,9 @@ using Newtonsoft.Json;
 
 namespace MingweiSamuel.Camille.Model.{{= endpoint }}
 {
-
 {{
+
+	if (schema.type === 'object') {
 		let props = schema.properties;
         let desc = schema.description;
         if (desc) {
@@ -27,7 +28,7 @@ namespace MingweiSamuel.Camille.Model.{{= endpoint }}
     {
         public {{= schemaName }}({{= 
 			Object.entries(props)
-				.map(([ key, value ]) => dotUtils.formatJsonProperty(key) + ' ' + dotUtils.stringifyType(value) + ' ' + dotUtils.normalizeArgName(key))
+				.map(([ key, value ]) => dotUtils.formatJsonProperty(key) + ' ' + dotUtils.stringifyType(key, value) + ' ' + dotUtils.normalizeArgName(key))
 				.join(',\r\n                ') 
 			}})
         {
@@ -48,7 +49,7 @@ namespace MingweiSamuel.Camille.Model.{{= endpoint }}
             let name = dotUtils.normalizePropName(propKey, schemaName, prop);
 }}
         {{= dotUtils.formatJsonProperty(propKey) }}
-        public readonly {{= dotUtils.stringifyType(prop) }} {{= name }};
+        public readonly {{= dotUtils.stringifyType(name, prop) }} {{= name }};
 {{
         }
 }}
@@ -57,8 +58,27 @@ namespace MingweiSamuel.Camille.Model.{{= endpoint }}
         {
             return $"{{= schemaName }}({{= Object.entries(props)
                 .map(([ propKey, prop ]) => dotUtils.normalizePropName(propKey, schemaName, prop))
-                .map(n => n + ': {' + n + '}')
+                .map(n => n + ': { this.' + n + ' }')
                 .join(', ') }})";
         }
     }
+{{
+	} else if (schema.enum) {
+}}
+	public enum {{= schemaName }}
+	{
+{{
+		for (let enummember of schema.enum) {
+}}
+		{{= enummember }},
+{{ 
+		}
+}}
+	}
+{{
+	} else {
+		/*primitive or array types on the schema top-level, should not happen*/
+		throw 'Primitive Type on toplevel';
+	}
+}}
 }

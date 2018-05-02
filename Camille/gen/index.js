@@ -4,9 +4,9 @@ fs.readFileAsync = util.promisify(fs.readFile);
 fs.writeFileAsync = util.promisify(fs.writeFile);
 
 const doT = require('dot');
-const doT2 = require('dot');
 const glob = require('glob-promise');
 const dotUtils = require('./dotUtils.js');
+const schemaFix = require('./schemaFix.js');
 
 const log = a => { console.log(a); return a; };
 const suffix = '.dot';
@@ -31,6 +31,7 @@ const outDir = '../src-gen/';
 const templatesDir = process.cwd() + '/templates/';
 
 var spec = require('./.spec.json');
+schemaFix.fixSchema(spec);
 
 const files = ['RiotApi.cs.dot', 'RiotApiConfig.cs.dot', 'Endpoints.cs.dot'];
 
@@ -58,6 +59,7 @@ const ModelClassSettings = {
     selfcontained: false
 };
 
+//model classes
 establish(`${outDir}Model/`);
 fs.readFileAsync(templatesDir + 'ModelClasses.cs.dot', 'utf8')
     .then(input => doT.template(input, ModelClassSettings))

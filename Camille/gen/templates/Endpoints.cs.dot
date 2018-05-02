@@ -46,7 +46,7 @@ namespace MingweiSamuel.Camille.Endpoints
             let method = dotUtils.capitalize(operationId.slice(operationId.indexOf('.') + 1));
 
             let jsonInfo = get.responses['200'].content['application/json'];
-            let returnType = dotUtils.stringifyType(jsonInfo.schema, endpoint);
+            let returnType = dotUtils.stringifyType('string', jsonInfo.schema, endpoint);
 
             /* Cases if not rate limited. */
             let rateLimitExcluded = get['x-app-rate-limit-excluded'] ? true : false;
@@ -78,7 +78,7 @@ namespace MingweiSamuel.Camille.Endpoints
                     for (let param of paramList)
                     {
                         argBuilder.push(', ',
-                            dotUtils.stringifyType(param.schema, endpoint, !required),
+                            dotUtils.stringifyType(dotUtils.normalizePropName(param.name), param.schema, endpoint, !required),
                             ' ', param.name);
                         if (!required)
                             argBuilder.push(' = null');
