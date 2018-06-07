@@ -28,7 +28,7 @@ namespace Camille.Test
             // C9 Sneaky
             foreach (var entry in result)
             {
-                if (!Queue.RANKED_SOLO_5x5.Equals(entry.QueueType))
+                if (!Queues.RANKED_5x5_SOLO.Name.Equals(entry.QueueType))
                     continue;
                 // If he's ranked, Sneaky better be at least -Diamond- Platinum.
                 Assert.IsTrue(
@@ -41,7 +41,7 @@ namespace Camille.Test
                 Assert.IsTrue(entry.PlayerOrTeamName.ToUpperInvariant().Contains("SNEAKY"));
                 return;
             }
-            Console.WriteLine("Failed to find queue " + Queue.RANKED_SOLO_5x5 + ", Sneaky unranked.");
+            Console.WriteLine("Failed to find queue " + Queues.RANKED_5x5_SOLO.Name + ", Sneaky unranked.");
         }
 
         [TestMethod]
